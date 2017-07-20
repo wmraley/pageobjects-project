@@ -13,8 +13,8 @@ public class BasicTest extends Core {
 		super(baseUrl, null);
 	}
 
-	@BeforeClass(enabled = false)
-	public void setUpChrome() throws Exception {
+	@BeforeClass(enabled = true, groups = "chrome")
+	public void setUpChrome() {
 		// Set system property to use Chrome driver
 		System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
 		// Setup the driver to use Chrome
@@ -26,8 +26,8 @@ public class BasicTest extends Core {
 		getDriver().get(getBaseURL());
 	}
 
-	@BeforeClass(enabled = true)
-	public void setUpFirefox() throws Exception {
+	@BeforeClass(enabled = true, groups = "firefox")
+	public void setUpFirefox() {
 		// Setup the driver to use Firefox
 		setDriver(new FirefoxDriver());
 		// Set an implicit wait of up to 30 seconds
@@ -37,8 +37,8 @@ public class BasicTest extends Core {
 		getDriver().get(getBaseURL());
 	}
 
-	@BeforeClass(enabled = false)
-	public void setUpIE() throws Exception {
+	@BeforeClass(enabled = false, groups = "ie")
+	public void setUpIE() {
 		// Set system property to use IE driver
 		System.setProperty("webdriver.ie.driver", "drivers/IEDriverServer.exe");
 		// Setup the driver to use IE
@@ -52,7 +52,7 @@ public class BasicTest extends Core {
 
 	@BeforeMethod()
 	public void setupTest() {
-		getDriver().get(getBaseURL());
+		// getDriver().get(getBaseURL());
 	}
 
 	@AfterClass(alwaysRun = true)
